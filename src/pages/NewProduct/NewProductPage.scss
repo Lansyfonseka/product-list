@@ -1,0 +1,17 @@
+.main.new-product {
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 16px;
+    &--row {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 120px 150px;
+      input, select {
+        font-size: 16px;
+        padding: 3px 8px;
+      }
+    }
+  }
+}
