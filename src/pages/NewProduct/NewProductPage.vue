@@ -3,7 +3,7 @@
     <header class="header">
       <h1 class="title">Product Add</h1>
       <div class="controls">
-        <button class="controls--button">Save</button>
+        <button class="controls--button" @click="saveNewProduct">Save</button>
         <router-link to="/">
           <button class="controls--button">Cancel</button>
         </router-link>        
@@ -41,11 +41,29 @@
 <script lang="ts">
 import './NewProductPage.scss'
 import { Vue } from 'vue-class-component'
+import axios from 'axios'
 
 export default class NewProductPage extends Vue {
   dvd() {
     console.log('adjfhl')
   }
   productType: string = ''
+  saveNewProduct () {
+    console.log('Save')
+    // axios({
+    //   method: 'post',
+    //   url: 'http://localhost:8000/action.php',
+    //   data: {
+    //     name: 'Malcov'
+    //   }
+    // })
+    axios.post('http://localhost:8000/action.php', {data: {name:'Malcov'}} ,{ headers: { "Content-Type": "text/plain" } })
+        .then(function (response) {
+            console.log(response.data);
+        })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
+  }
 }
 </script>
