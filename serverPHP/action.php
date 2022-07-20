@@ -1,30 +1,37 @@
 <?php
+include 'config.php';
+include 'MysqlDB.php';
+// header('Access-Control-Allow-Headers: Content-Type');
+// header('Access-Control-Allow-Origin: http://localhost:8080');
+// header('Content-Type: application/json');
+// $user = $_POST['name'];
+// var_dump ($_POST);
+// echo ("Hello from server: $user");
 
-header('Access-Control-Allow-Headers: Content-Type');
-header('Access-Control-Allow-Origin: http://localhost:8080');
-header('Content-Type: application/json');
-$user = $_POST['name'];
-var_dump ($_POST);
-echo ("Hello from server: $user");
-
-$host = "localhost:3306";
-$user = "root";
-$password = "w123578951";
-$dbname = "manbook";
-$id = '';
+// $host = "bgs2onkyc3eja1qtxjbe-mysql.services.clever-cloud.com";
+// $user = "usoza3v9fqxjj54c";
+// $password = "nrWfGYmJOGa4iNgmJUKZ";
+// $dbname = "bgs2onkyc3eja1qtxjbe";
   
 // $conn = new mysqli($host, $user, $password);
-$conn = mysqli_connect($host, $user, $password, $dbname);
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-echo "Connected successfully";
+$conn = mysqli_connect($HOST, $USER, $PASSWORD, $DBNAME);
+// if (!$conn) {
+//   die("Connection failed: " . mysqli_connect_error());
+// }
+// echo "Connected successfully";
 
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM Users";
 $result = $conn->query($sql);
+// var_dump ($result)
 
-var_dump ($result)
 
+// for ($i=0 ; $i<mysqli_num_rows($result) ; $i++) {
+//   echo ($i>0?',':'').json_encode(mysqli_fetch_object($result));
+// }
+
+$myDB = new MysqlDB($HOST, $USER, $PASSWORD, $DBNAME);
+echo 'XXXXXXXX';
+echo $myDB->getName();
 // $con = mysqli($host, $user, $password,$dbname);
 // $method = $_SERVER['REQUEST_METHOD'];
 // $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
