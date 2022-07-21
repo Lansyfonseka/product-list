@@ -1,5 +1,4 @@
 <?php
-// include 'config.php';
 include 'MysqlDB.php';
 include 'config.php';
 // header('Access-Control-Allow-Headers: Content-Type');
@@ -11,10 +10,11 @@ include 'config.php';
 
 $myDB = new MysqlDB($HOST, $USER, $PASSWORD, $DBNAME);
 echo 'XXXXXXXX';
-$users = $myDB->getName();
-// var_dump ($myDB->getName());
-for ($i=0 ; $i<mysqli_num_rows($users) ; $i++) {
-  echo ($i>0?',':'').json_encode(mysqli_fetch_object($users));
+$result = $myDB->addNewProduct('fdigup','chair',1300,'"size":"2x2x3"');
+$products = $myDB->getAllProducts();
+// var_dump ($myDB->getAllProducts());
+for ($i=0 ; $i<mysqli_num_rows($products) ; $i++) {
+  echo ($i>0?',':'').json_encode(mysqli_fetch_object($products));
 }
 // $con = mysqli($host, $user, $password,$dbname);
 // $method = $_SERVER['REQUEST_METHOD'];
@@ -35,7 +35,7 @@ for ($i=0 ; $i<mysqli_num_rows($users) ; $i++) {
 //       $city = $_POST["city"];
 //       $job = $_POST["job"];
 
-//       $sql = "insert into contacts (name, email, city, country, job) values ('$name', '$email', '$city', '$country', '$job')"; 
+      // $sql = "insert into contacts (name, email, city, country, job) values ('$name', '$email', '$city', '$country', '$job')"; 
 //       break;
 // }
 
