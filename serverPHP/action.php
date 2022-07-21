@@ -10,7 +10,7 @@ include 'config.php';
 
 $myDB = new MysqlDB($HOST, $USER, $PASSWORD, $DBNAME);
 echo 'XXXXXXXX';
-$result = $myDB->addNewProduct('fdigup','chair',1300,'"size":"2x2x3"');
+// $result = $myDB->addNewProduct('fdigup','chair',1300,'"size":"2x2x3"');
 $products = $myDB->getAllProducts();
 // var_dump ($myDB->getAllProducts());
 for ($i=0 ; $i<mysqli_num_rows($products) ; $i++) {
