@@ -1,23 +1,15 @@
 <?php
-include 'config.php';
 
-class MysqlDB extends mysqli {
-  private string $host;
-  private string $user;
-  private string $password;
-  private string $dbName;
+class MysqlDB {
+  private $db;
   // private $connectionDB;
   public function __construct(string $HOST, string $USER, string $PASSWORD, string $DBNAME) {
-    $this->host = $HOST;
-    $this->user = $USER;
-    $this->password = $PASSWORD;
-    $this->dbName = $DBNAME;
+    $this->db = new mysqli($HOST, $USER, $PASSWORD, $DBNAME);
     // $this->connectionDB = mysqli_connect($HOST, $USER, $PASSWORD, $DBNAME);
   }
   public function getName(){
-    $connection = mysqli_connect($this->host, $this->user, $this->password, $this->dbName);
     $sql = "SELECT * FROM Users";
-    $result = $connection->query($sql);
+    $result = $this->db->query($sql);
     return $result;
   }
 }
