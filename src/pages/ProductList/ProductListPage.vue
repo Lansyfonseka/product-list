@@ -22,14 +22,9 @@
 
 <script lang="ts">
 import './ProductListPage.scss'
-import { Vue,Options } from 'vue-class-component'
-import ProductCard from '../../components/ProductCard.vue'
+import ProductCard from '../../components/ProductCard/ProductCard.vue'
 
-@Options({
-  components: {
-    ProductCard
-  }
-})
-export default class ProductListPage extends Vue {
+export default {
+  components: {ProductCard}
 }
 </script>

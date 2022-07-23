@@ -10,14 +10,10 @@
 
 <script lang="ts">
 import './ProductCard.scss';
-import { Vue, Options } from 'vue-class-component'
 
-@Options({
+export default {
   props: {
     name: String
   }
-})
-export default class ProductCard extends Vue {
-  name!: string
 }
 </script>

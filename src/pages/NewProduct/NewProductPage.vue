@@ -9,61 +9,64 @@
         </router-link>        
       </div>
     </header>
-    <main class="main new-product">
-      <form action="submit" id="product_form" class="form">
-        <div class="form--row">
-          <label for="sku">SKU</label>
-          <input type="text" id="sku">
-        </div>
-        <div class="form--row">
-          <label for="name">Name</label>
-          <input type="text" id="name">
-        </div>
-        <div class="form--row">
-          <label for="price">Price ($)</label>
-          <input type="number" id="price">
-        </div>
-        <div class="form--row">
-          <label for="productType">Type Switcher</label>
-          <select name="productType" id="productType" v-model="productType">
-            <option value="" disabled selected>Type Switcher</option>
-            <option value="dvd" id="DVD" >DVD</option>
-            <option value="furniture" id="Furniture">Furniture</option>
-            <option value="book" id="Book">Book</option>
-          </select>
-        </div>
-        <div class="form--row">{{productType}}</div>
-      </form>
+    <main class="main">
+      <NewProductForm :productsTypes="productsTypes"></NewProductForm>
     </main>
   </div>  
 </template>
 
 <script lang="ts">
 import './NewProductPage.scss'
-import { Vue } from 'vue-class-component'
 import axios from 'axios'
-
-export default class NewProductPage extends Vue {
-  dvd() {
-    console.log('adjfhl')
+import NewProductForm from '@/components/NewProductForm/NewProductForm.vue'
+import ProductType from '../../components/NewProductForm/assets/productType';
+const templateOfProductType:Array<ProductType> = [
+  {
+    name: 'DVD',
+    description: 'Please provide size of DVD in MB',
+    customFields: [
+      {
+        fieldTitile: 'Size (MB)',
+        fieldId: 'DVD'
+      }
+    ]
+  },
+  {
+    name: 'Book',
+    description: 'Please provide weight of book in KG',
+    customFields: [
+      {
+        fieldTitile: 'Weight (KG)',
+        fieldId: 'weight'
+      }
+    ]
+  },
+  {
+    name: 'Furnuture',
+    description: 'Please provide dimension in HxWxL format',
+    customFields: [
+      {
+        fieldTitile: 'Height (CM)',
+        fieldId: 'height'
+      },{
+        fieldTitile: 'Width (CM)',
+        fieldId: 'width'
+      },
+      {
+        fieldTitile: 'Length (CM)',
+        fieldId: 'length'
+      }
+    ]
   }
-  productType: string = ''
-  saveNewProduct () {
-    console.log('Save')
-    // axios({
-    //   method: 'post',
-    //   url: 'http://localhost:8000/action.php',
-    //   data: {
-    //     name: 'Malcov'
-    //   }
-    // })
-    axios.post('http://localhost:8000/action.php', {data: {name:'Malcov'}} ,{ headers: { "Content-Type": "text/plain" } })
-        .then(function (response) {
-            console.log(response.data);
-        })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
+]
+export default {
+  components: {
+    NewProductForm
+  },
+  data() {
+    return {
+      productsTypes: templateOfProductType
+    }
   }
 }
 </script>
